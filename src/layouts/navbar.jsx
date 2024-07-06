@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { CircleUser, Menu, Package2 } from "lucide-react";
+import { CircleUser, Menu } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import { navItems } from "../App";
 
@@ -24,6 +24,7 @@ const Layout = () => {
       <main className="flex-grow overflow-auto">
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 };
@@ -34,8 +35,7 @@ const DesktopNav = () => (
       to="/"
       className="flex items-center gap-2 text-lg font-semibold md:text-base"
     >
-      <Package2 className="h-6 w-6" />
-      <span className="sr-only">Acme Inc</span>
+      My Blog
     </NavItem>
     {navItems.map((item) => (
       <NavItem key={item.to} to={item.to}>
@@ -59,8 +59,7 @@ const MobileNav = () => (
           to="/"
           className="flex items-center gap-2 text-lg font-semibold"
         >
-          <Package2 className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
+          My Blog
         </NavItem>
         {navItems.map((item) => (
           <NavItem key={item.to} to={item.to}>
@@ -83,9 +82,7 @@ const UserMenu = () => (
     <DropdownMenuContent align="end">
       <DropdownMenuLabel>My Account</DropdownMenuLabel>
       <DropdownMenuSeparator />
-      <DropdownMenuItem>Settings</DropdownMenuItem>
-      <DropdownMenuItem>Support</DropdownMenuItem>
-      <DropdownMenuSeparator />
+      <DropdownMenuItem>Profile</DropdownMenuItem>
       <DropdownMenuItem>Logout</DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
@@ -106,6 +103,27 @@ const NavItem = ({ to, children, className }) => (
   >
     {children}
   </NavLink>
+);
+
+const Footer = () => (
+  <footer className="border-t bg-background py-6 px-4 md:px-6">
+    <div className="container mx-auto flex flex-col items-center justify-between gap-4 md:flex-row">
+      <div className="flex gap-4">
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
+          Twitter
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
+          LinkedIn
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
+          GitHub
+        </a>
+      </div>
+      <div className="text-sm text-muted-foreground">
+        © 2024 My Blog. All rights reserved.
+      </div>
+    </div>
+  </footer>
 );
 
 export default Layout;
