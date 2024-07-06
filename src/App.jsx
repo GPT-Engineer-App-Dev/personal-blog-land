@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Home, User, BookOpen, Mail, PlusCircle } from "lucide-react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { ThemeProvider } from "next-themes";
 import Layout from "./layouts/navbar";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -43,20 +44,22 @@ export const navItems = [
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Index />} />
-              <Route path="about" element={<About />} />
-              <Route path="blog" element={<Blog />} />
-              <Route path="add-post" element={<AddBlogPost />} />
-              <Route path="contact" element={<Contact />} />
-            </Route>
-          </Routes>
-        </Router>
-      </TooltipProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <TooltipProvider>
+          <Toaster />
+          <Router>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Index />} />
+                <Route path="about" element={<About />} />
+                <Route path="blog" element={<Blog />} />
+                <Route path="add-post" element={<AddBlogPost />} />
+                <Route path="contact" element={<Contact />} />
+              </Route>
+            </Routes>
+          </Router>
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };
